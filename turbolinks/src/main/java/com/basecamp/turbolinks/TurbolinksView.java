@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Handler;
+import android.os.Looper;
 import android.util.AttributeSet;
 import android.view.View;
 import android.webkit.WebView;
@@ -241,8 +242,17 @@ public class TurbolinksView extends FrameLayout {
 
         if (getWidth() <= 0 || getHeight() <= 0) return null;
 
-        Bitmap bitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        final Bitmap bitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
         draw(new Canvas(bitmap));
+
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+          @Override
+          public void run() {
+            bitmap.recycle();
+            TurbolinksLog.d("recycling bitmap");
+          }
+        }, 5000);
+
         return bitmap;
     }
 
