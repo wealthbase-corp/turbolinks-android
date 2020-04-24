@@ -540,10 +540,15 @@ public class TurbolinksSession implements TurbolinksScrollUpCallback {
                  */
                 if (turbolinksIsReady && TextUtils.equals(visitIdentifier, currentVisitIdentifier)) {
                     TurbolinksLog.d("Hiding progress view for visitIdentifier: " + visitIdentifier + ", currentVisitIdentifier: " + currentVisitIdentifier);
-                    turbolinksView.hideProgress();
+                    turbolinksAdapter.hideProgressViewAnimation();
                 }
             }
         });
+    }
+
+    @android.webkit.JavascriptInterface
+    public void hideProgress() {
+        turbolinksView.hideProgress();
     }
 
     /**

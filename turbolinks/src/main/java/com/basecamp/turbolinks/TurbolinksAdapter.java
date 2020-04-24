@@ -47,4 +47,6 @@ public interface TurbolinksAdapter {
      * @param action Whether to treat the request as an advance (navigating forward) or a replace (back).
      */
     void visitProposedToLocationWithAction(String location, String action);
+
+    void hideProgressViewAnimation();
 }
